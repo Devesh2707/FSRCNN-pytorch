@@ -84,7 +84,7 @@ def test():
 
 def checkpoint(epoch):
     if epoch%50 == 0:
-      model_out_path = "/checkpoints/model_up_{}_epoch{}.pth".format(upscale_factor,epoch)
+      model_out_path = "checkpoints/model_up_{}_epoch_{}.pth".format(upscale_factor,epoch)
       torch.save(model.state_dict(), model_out_path)
       print("Checkpoint saved to {}".format(model_out_path))
 
