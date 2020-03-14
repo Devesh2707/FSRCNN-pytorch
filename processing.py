@@ -5,7 +5,7 @@ import torch
 from model_loader import load_model
 
 img_to_tensor = ToTensor()
-FSRCNN = load_model(upscale_factor=2)
+FSRCNN = load_model(upscale_factor=4)
 cuda = torch.cuda.is_available()
 if cuda:
     FSRCNN = FSRCNN.cuda()

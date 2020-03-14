@@ -8,7 +8,7 @@ from model import Net
 from data import get_training_set, get_test_set
 
 
-upscale_factor = 2
+upscale_factor = 4
 batchSize = 4
 testBatchSize = 1
 nEpochs = 150

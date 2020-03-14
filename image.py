@@ -1,4 +1,5 @@
 #Output_path should contain an image name with extension like out.bmp
+#change upscale factor in processing.py
 
 from processing import convert_frame
 
