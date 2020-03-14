@@ -13,7 +13,7 @@ while(True):
     ret, frame = cap.read()
 
     # Display the resulting frame
-    cv2.imshow('FSRCNN',convert_frame(frame,w,h))
+    cv2.imshow('FSRCNN',convert_frame(frame = frame, w = w, h = h))
     cv2.imshow('original',frame)
     c = cv2.waitKey(1)
     if c == 27:

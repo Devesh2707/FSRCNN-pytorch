@@ -9,8 +9,13 @@ FSRCNN = load_model(upscale_factor=2)
 cuda = torch.cuda.is_available()
 if cuda:
     FSRCNN = FSRCNN.cuda()
-def convert_frame(frame,w,h):
-    y,cb,cr = Image.fromarray(frame).convert('YCbCr').split()
+def convert_frame(frame,w=None,h=None,image=False):
+    if image:
+        img = Image.open(frame).convert('YCbCr')
+        w,h = img.size
+        y,cb,cr = img.split()
+    else:
+        y,cb,cr = Image.fromarray(frame).convert('YCbCr').split()
     input = img_to_tensor(y).view(1, -1, y.size[1], y.size[0])
     if cuda:
         input = input.cuda()
@@ -27,6 +32,9 @@ def convert_frame(frame,w,h):
     out_img_cr = cr.resize(out_img_y.size, Image.BICUBIC)
     out_img = Image.merge('YCbCr', [out_img_y, out_img_cb, out_img_cr]).convert('RGB')
     out_img = out_img.resize(size=(w,h), resample = Image.LANCZOS)
-    out_arr = np.array(out_img)
     
-    return out_arr
+    if image:
+        return out_img
+    else:
+        out_arr = np.array(out_img)
+        return out_arr
