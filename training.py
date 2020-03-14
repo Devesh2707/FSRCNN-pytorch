@@ -21,10 +21,12 @@ seed = 123
 
 if cuda and not torch.cuda.is_available():
     raise Exception("No GPU found, please run with cuda == False")
+else:
+    device = 'cuda'
 
 torch.manual_seed(seed)
 
-device = torch.device("cuda" if cuda else "cpu")
+#device = torch.device("cuda" if cuda else "cpu")
 
 print('===> Loading datasets')
 train_set = get_training_set(upscale_factor)
@@ -82,7 +84,7 @@ def test():
 
 def checkpoint(epoch):
     if epoch%50 == 0:
-      model_out_path = "/models/model_up_{}_epoch{}.pth".format(upscale_factor,epoch)
+      model_out_path = "/checkpoints/model_up_{}_epoch{}.pth".format(upscale_factor,epoch)
       torch.save(model.state_dict(), model_out_path)
       print("Checkpoint saved to {}".format(model_out_path))
 
