@@ -1,3 +1,6 @@
+#change upscale factor in processing.py
+#will have some latency while using upscale_factor = 3 or 4
+
 import numpy as np
 import cv2
 from processing import convert_frame
@@ -8,9 +11,6 @@ w,h = int(cap.get(3)), int(cap.get(4))
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
-
-    # Our operations on the frame come here
-    #gray = cv2.cvtColor(frame)
 
     # Display the resulting frame
     cv2.imshow('FSRCNN',convert_frame(frame,w,h))
